@@ -7,8 +7,10 @@ import GlobalStyles from "./Globalstyles";
 function App() {
   return (
     <>
-      <Router></Router>
-      <GlobalStyles />
+      <ThemeProvider theme={theme}>
+        <Router />
+        <GlobalStyles />
+      </ThemeProvider>
     </>
   );
 }

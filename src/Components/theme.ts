@@ -1,3 +1,3 @@
 export default {
-  bgc: "black",
+  bgc: "white",
 };
