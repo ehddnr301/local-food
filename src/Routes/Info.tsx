@@ -23,15 +23,12 @@ const Button = styled.button`
 `;
 
 const Info = (): JSX.Element => {
-  console.log(
-    `https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_GH_ID}&redirect_uri=${process.env.REACT_APP_GH_CALLBACK}`
-  );
   return (
     <Container>
       <Wrapper>
         <Button>카카오톡</Button>
         <a
-          href={`https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_GH_ID}&redirect_uri=${process.env.REACT_APP_GH_CALLBACK}`}
+          href={`https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_GH_ID}&redirect_uri=${process.env.REACT_APP_GH_CALLBACK}&scope=read:user`}
         >
           <Button>깃허브</Button>
         </a>
