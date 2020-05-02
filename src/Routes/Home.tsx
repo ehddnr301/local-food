@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import NMap from "../Components/NMap";
+import { connect } from "react-redux";
 
 declare global {
   interface Window {
@@ -21,4 +22,8 @@ const Home = (): JSX.Element => {
   );
 };
 
-export default Home;
+const mapStateToProp = (state) => {
+  console.log(state);
+};
+
+export default connect(mapStateToProp)(Home);

@@ -1,10 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import qs from "qs";
 import Loading from "./Loading";
+import { connect } from "react-redux";
+import { loginUser } from "./Store";
 
-const Callback = ({ history, location }) => {
+const Callback = ({ history, location, dispatch }) => {
+  const [user, setUser] = useState([]);
   // useState로 로그인상태를 true로 만들기 ?
+  // 유저정보를 받아서 리덕스로 관리
+  // 로그아웃 하면 리덕스에서 삭제 ?
   useEffect(() => {
     async function getToken() {
       const { code } = qs.parse(location.search, {
@@ -19,6 +24,7 @@ const Callback = ({ history, location }) => {
           }
         );
         console.log(user);
+        dispatch(loginUser(user));
 
         history.push("/"); // 로그인이 완료되면 보여줄 페이지
       } catch (error) {
@@ -32,4 +38,8 @@ const Callback = ({ history, location }) => {
   return <Loading />;
 };
 
-export default Callback;
+const mapDispatchToProp = (dispatch) => {
+  return { dispatch };
+};
+
+export default connect(null, mapDispatchToProp)(Callback);
