@@ -26,7 +26,11 @@ const Info = (): JSX.Element => {
   return (
     <Container>
       <Wrapper>
-        <Button>카카오톡</Button>
+        <a
+          href={`https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_ID}&redirect_uri=${process.env.REACT_APP_KAKAO_CALLBACK}&response_type=code`}
+        >
+          <Button>카카오톡</Button>
+        </a>
         <a
           href={`https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_GH_ID}&redirect_uri=${process.env.REACT_APP_GH_CALLBACK}&scope=read:user`}
         >

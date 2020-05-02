@@ -14,7 +14,8 @@ const Container = styled.div`
   height: 90vh;
 `;
 
-const Home = (): JSX.Element => {
+const Home = (props): JSX.Element => {
+  console.log(props);
   return (
     <Container>
       <NMap />
@@ -22,8 +23,8 @@ const Home = (): JSX.Element => {
   );
 };
 
-const mapStateToProp = (state) => {
-  console.log(state);
+const mapStateToProp = (state, ownProps) => {
+  return { state };
 };
 
 export default connect(mapStateToProp)(Home);

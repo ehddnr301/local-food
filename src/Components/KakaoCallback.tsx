@@ -5,7 +5,7 @@ import Loading from "./Loading";
 import { connect } from "react-redux";
 import { loginUser } from "./Store";
 
-const GCallback = ({ history, location, dispatch }) => {
+const KCallback = ({ history, location, dispatch }) => {
   const [user, setUser] = useState([]);
   // useState로 로그인상태를 true로 만들기 ?
   // 유저정보를 받아서 리덕스로 관리
@@ -17,12 +17,9 @@ const GCallback = ({ history, location, dispatch }) => {
       });
 
       try {
-        const user = await axios.post(
-          `http://localhost:4000/user/auth/github`,
-          {
-            code,
-          }
-        );
+        const user = await axios.post(`http://localhost:4000/user/auth/kakao`, {
+          code,
+        });
         console.log(user);
         dispatch(loginUser(user));
 
@@ -42,4 +39,4 @@ const mapDispatchToProp = (dispatch) => {
   return { dispatch };
 };
 
-export default connect(null, mapDispatchToProp)(GCallback);
+export default connect(null, mapDispatchToProp)(KCallback);
