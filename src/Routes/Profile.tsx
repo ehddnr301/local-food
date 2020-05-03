@@ -1,23 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-import NMap from "../Components/NMap";
 import { connect } from "react-redux";
-
-declare global {
-  interface Window {
-    naver: any;
-  }
-}
 
 const Container = styled.div`
   width: 100vw;
   height: 90vh;
 `;
 
-const Home = (props): JSX.Element => {
+const UserDetail = styled.div``;
+
+const Profile = (props): JSX.Element => {
+  if (props.state.length === 1) {
+    console.log(props.state);
+  }
   return (
     <Container>
-      <NMap />
+      <UserDetail></UserDetail>
     </Container>
   );
 };
@@ -26,4 +24,4 @@ const mapStateToProp = (state, ownProps) => {
   return { state };
 };
 
-export default connect(mapStateToProp)(Home);
+export default connect(mapStateToProp)(Profile);

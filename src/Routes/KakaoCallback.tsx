@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import qs from "qs";
-import Loading from "./Loading";
+import Loading from "../Components/Loading";
 import { connect } from "react-redux";
-import { loginUser } from "./Store";
+import { loginUser } from "../Components/Store";
 
 const KCallback = ({ history, location, dispatch }) => {
   const [user, setUser] = useState([]);
