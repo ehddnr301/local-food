@@ -19,15 +19,10 @@ const userReducer = (state = [], action) => {
   switch (action.type) {
     case LOGIN:
       const {
-        userInfo: {
-          data: { avatarUrl, email, username, _id: id },
-        },
+        userInfo: { data: id },
       } = action;
 
-      return [
-        { isLoggedIn: true, userInfo: { avatarUrl, email, username, id } },
-        ...state,
-      ];
+      return [{ isLoggedIn: true, userInfo: { id } }, ...state];
     case LOGOUT:
       return state.filter((s) => s == 0);
     default:

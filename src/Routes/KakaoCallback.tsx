@@ -20,7 +20,6 @@ const KCallback = ({ history, location, dispatch }) => {
         const user = await axios.post(`http://localhost:4000/user/auth/kakao`, {
           code,
         });
-        console.log(user);
         dispatch(loginUser(user));
 
         history.push("/"); // 로그인이 완료되면 보여줄 페이지

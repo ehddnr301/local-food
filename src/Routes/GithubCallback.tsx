@@ -23,7 +23,6 @@ const GCallback = ({ history, location, dispatch }) => {
             code,
           }
         );
-        console.log(user);
         dispatch(loginUser(user));
 
         history.push("/"); // 로그인이 완료되면 보여줄 페이지
