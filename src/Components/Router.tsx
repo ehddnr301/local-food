@@ -19,18 +19,18 @@ import store from "./Store";
 export default () => (
   <Router>
     <>
-      <Header />
-      <Switch>
-        <Provider store={store}>
+      <Provider store={store}>
+        <Header />
+        <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/info" exact component={Info} />
           <Route path="/profile" exact component={Profile} />
           <Route path="/error" exact component={Err} />
           <Route path="/callback/github" exact component={GCallback} />
           <Route path="/callback/kakao" exact component={KCallback} />
-        </Provider>
-        <Redirect from="*" to="/" />
-      </Switch>
+          <Redirect from="*" to="/" />
+        </Switch>
+      </Provider>
     </>
   </Router>
 );
