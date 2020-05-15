@@ -34,11 +34,11 @@ const Profile = (props): JSX.Element => {
     async function getUserInfo() {
       const {
         data: { email, username, avatarUrl },
-      } = await axios.get(`http://localhost:4000/user/${userId}`);
+      } = await axios.post(`http://localhost:4000/user/me`, { userId });
       setUserInfo({ email, username, avatarUrl });
     }
     getUserInfo();
-  });
+  }, []);
   return (
     <Container>
       {userInfo ? (
