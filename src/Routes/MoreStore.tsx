@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import useInput from "../Components/useInput";
 import Input from "../Components/Input";
+import { connect } from "react-redux";
+import { useHistory, Redirect } from "react-router-dom";
 
 const Container = styled.div`
   width: 100vw;
@@ -44,26 +46,35 @@ const Form = styled.div`
   }
 `;
 
-const MoreStore = ({ history }): JSX.Element => {
+const MoreStore = (props): JSX.Element => {
+  let userId = "";
+  const history = useHistory();
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  if (props.state.length === 1) {
+    userId = props.state[0].userInfo.id;
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(
-      storeName.value,
-      storeType.value,
-      location.value,
-      description.value
-    );
+    makeStore();
+  };
+  const makeStore = async () => {
     try {
+      setIsSuccess(true);
+
       await axios.post("http://localhost:4000/store/list", {
         storeName: storeName.value,
         storeType: storeType.value,
         location: location.value,
         description: description.value,
+        id: userId,
       });
     } catch (error) {
       console.log(error);
+    } finally {
+      console.log(isSuccess);
     }
-    history.push("/");
   };
 
   const storeName = useInput("");
@@ -71,7 +82,9 @@ const MoreStore = ({ history }): JSX.Element => {
   const location = useInput("");
   const description = useInput("");
 
-  return (
+  return isSuccess ? (
+    <Redirect to="/" />
+  ) : (
     <Container>
       <FormWrapper>
         <Explain></Explain>
@@ -89,4 +102,8 @@ const MoreStore = ({ history }): JSX.Element => {
   );
 };
 
-export default MoreStore;
+const mapStateToProp = (state, _) => {
+  return { state };
+};
+
+export default connect(mapStateToProp)(MoreStore);
