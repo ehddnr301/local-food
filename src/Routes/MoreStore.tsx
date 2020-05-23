@@ -79,8 +79,21 @@ const MoreStore = (props): JSX.Element => {
 
   const storeName = useInput("");
   const storeType = useInput("");
+  const [type, setType] = useState("");
   const location = useInput("");
   const description = useInput("");
+
+  const onChange = (e) => {
+    const {
+      target: { value },
+    } = e;
+    console.log(value);
+    if (value !== "pub" && value !== "restaurant" && value !== "cafe") {
+      setType("");
+    } else {
+      setType(value);
+    }
+  };
 
   return isSuccess ? (
     <Redirect to="/" />
@@ -91,7 +104,18 @@ const MoreStore = (props): JSX.Element => {
         <Form>
           <form onSubmit={handleSubmit}>
             <Input placeholder={"storeName"} {...storeName}></Input>
-            <Input placeholder={"storeType"} {...storeType}></Input>
+            <Input
+              placeholder={"storeType 을 선택해주세요."}
+              onChange={onChange}
+              value={type}
+              required
+              list="type"
+            ></Input>
+            <datalist id="type">
+              <option value="pub">주점</option>
+              <option value="restaurant">음식점</option>
+              <option value="cafe">카페</option>
+            </datalist>
             <Input placeholder={"location"} {...location}></Input>
             <Input placeholder={"description"} {...description}></Input>
             <button type="submit">addStore</button>

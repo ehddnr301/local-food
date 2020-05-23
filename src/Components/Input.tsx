@@ -9,6 +9,7 @@ const Input = ({
   value,
   onChange,
   type = "text",
+  list = null,
 }) => (
   <Container
     placeholder={placeholder}
@@ -16,6 +17,7 @@ const Input = ({
     value={value}
     onChange={onChange}
     type={type}
+    list={list}
   />
 );
 
