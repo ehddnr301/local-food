@@ -3,7 +3,6 @@ import styled from "styled-components";
 import axios from "axios";
 import useInput from "../Components/useInput";
 import Input from "../Components/Input";
-import { connect } from "react-redux";
 import { useHistory, Redirect } from "react-router-dom";
 
 const Container = styled.div`

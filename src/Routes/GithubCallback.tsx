@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import qs from "qs";
 import Loading from "../Components/Loading";
-import { connect } from "react-redux";
-import { loginUser } from "../Components/Store";
 
 const GCallback = ({ history, location, dispatch }) => {
   const [user, setUser] = useState([]);
@@ -25,7 +23,6 @@ const GCallback = ({ history, location, dispatch }) => {
         );
         console.log(user.data);
         localStorage.setItem("user", user.data);
-        dispatch(loginUser(user));
 
         history.push("/"); // 로그인이 완료되면 보여줄 페이지
       } catch (error) {
@@ -39,8 +36,4 @@ const GCallback = ({ history, location, dispatch }) => {
   return <Loading />;
 };
 
-const mapDispatchToProp = (dispatch) => {
-  return { dispatch };
-};
-
-export default connect(null, mapDispatchToProp)(GCallback);
+export default GCallback;

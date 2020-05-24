@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { Link, RouteComponentProps } from "react-router-dom";
+import { History } from "history";
 
 const Container = styled.div`
   width: 100%;
@@ -29,6 +29,7 @@ const Title = styled.div`
 
 const Header = (): JSX.Element => {
   const [isUser, setIsUser] = useState(false);
+
   useEffect(() => {
     function getUserInfo() {
       const user = localStorage.getItem("user");
@@ -37,7 +38,8 @@ const Header = (): JSX.Element => {
       }
     }
     getUserInfo();
-  });
+  }, []);
+
   return (
     <Container>
       <Title>
