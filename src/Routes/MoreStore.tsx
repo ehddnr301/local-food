@@ -46,20 +46,16 @@ const Form = styled.div`
   }
 `;
 
-const MoreStore = (props): JSX.Element => {
-  let userId = "";
+const MoreStore = (): JSX.Element => {
   const history = useHistory();
   const [isSuccess, setIsSuccess] = useState(false);
-
-  if (props.state.length === 1) {
-    userId = props.state[0].userInfo.id;
-  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     makeStore();
   };
   const makeStore = async () => {
+    const userId = localStorage.getItem("user");
     try {
       setIsSuccess(true);
 
@@ -126,8 +122,4 @@ const MoreStore = (props): JSX.Element => {
   );
 };
 
-const mapStateToProp = (state, _) => {
-  return { state };
-};
-
-export default connect(mapStateToProp)(MoreStore);
+export default MoreStore;

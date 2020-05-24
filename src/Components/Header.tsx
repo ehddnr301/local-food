@@ -27,11 +27,12 @@ const Title = styled.div`
   font-size: 48px;
 `;
 
-const Header = (props): JSX.Element => {
+const Header = (): JSX.Element => {
   const [isUser, setIsUser] = useState(false);
   useEffect(() => {
     function getUserInfo() {
-      if (props.state.length === 1) {
+      const user = localStorage.getItem("user");
+      if (user) {
         setIsUser(true);
       }
     }
@@ -88,8 +89,4 @@ const Header = (props): JSX.Element => {
   );
 };
 
-const mapStateToProp = (state) => {
-  return { state };
-};
-
-export default connect(mapStateToProp)(Header);
+export default Header;
