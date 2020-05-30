@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Link, RouteComponentProps } from "react-router-dom";
-import { History } from "history";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 const Container = styled.div`
   width: 100%;
@@ -27,13 +27,13 @@ const Title = styled.div`
   font-size: 48px;
 `;
 
-const Header = (): JSX.Element => {
+const Header = (props): JSX.Element => {
   const [isUser, setIsUser] = useState(false);
 
   useEffect(() => {
     function getUserInfo() {
       const user = localStorage.getItem("user");
-      if (user) {
+      if (user || props.state.length === 1) {
         setIsUser(true);
       }
     }
@@ -91,4 +91,8 @@ const Header = (): JSX.Element => {
   );
 };
 
-export default Header;
+const mapStateToProp = (state) => {
+  return { state };
+};
+
+export default connect(mapStateToProp)(Header);
