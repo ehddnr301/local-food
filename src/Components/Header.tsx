@@ -33,12 +33,13 @@ const Header = (props): JSX.Element => {
   useEffect(() => {
     function getUserInfo() {
       const user = localStorage.getItem("user");
+      console.log(props.state);
       if (user || props.state.length === 1) {
         setIsUser(true);
       }
     }
     getUserInfo();
-  }, []);
+  }, [props]);
 
   return (
     <Container>
