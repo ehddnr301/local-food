@@ -4,6 +4,7 @@ import axios from "axios";
 import useInput from "../Components/useInput";
 import Input from "../Components/Input";
 import { useHistory, Redirect } from "react-router-dom";
+import backgroundMore from "../Images/backgroundMore.jpg";
 
 const Container = styled.div`
   width: 100vw;
@@ -13,12 +14,13 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-image: url(${backgroundMore});
 `;
 
 const FormWrapper = styled.div`
   width: 60%;
   height: 80%;
-  background-color: grey;
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
 `;
 
@@ -37,12 +39,23 @@ const Form = styled.div`
   justify-content: center;
   align-items: center;
   form {
+    width: 100%;
     display: flex;
+    align-items: center;
     flex-direction: column;
-    input:not(:last-child) {
-      margin-bottom: 10px;
-    }
   }
+`;
+
+const Button = styled.button`
+  width: 60%;
+  padding: 2% 5% 1%;
+  border: 0;
+  border-radius: 10px;
+  outline: none;
+  color: white;
+  background-color: #2ecc71;
+  font-family: "Jua", sans-serif;
+  font-size: 20px;
 `;
 
 const MoreStore = (): JSX.Element => {
@@ -113,7 +126,7 @@ const MoreStore = (): JSX.Element => {
             </datalist>
             <Input placeholder={"location"} {...location}></Input>
             <Input placeholder={"description"} {...description}></Input>
-            <button type="submit">addStore</button>
+            <Button type="submit">추가하기</Button>
           </form>
         </Form>
       </FormWrapper>
