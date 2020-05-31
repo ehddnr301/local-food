@@ -31,6 +31,7 @@ const Profile = ({ history, dispatch }): JSX.Element => {
 
   const onClick = () => {
     localStorage.removeItem("user");
+    dispatch(logoutUser());
     setUserInfo(undefined);
     setIsUser(false);
   };

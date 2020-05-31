@@ -24,7 +24,7 @@ const userReducer = (state = [], action) => {
 
       return [{ isLoggedIn: true, userInfo: { id } }, ...state];
     case LOGOUT:
-      return state.filter((s) => s == 0);
+      return [{ isLoggedIn: false }];
     default:
       return state;
   }

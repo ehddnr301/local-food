@@ -33,9 +33,15 @@ const Header = (props): JSX.Element => {
   useEffect(() => {
     function getUserInfo() {
       const user = localStorage.getItem("user");
-      console.log(props.state);
-      if (user || props.state.length === 1) {
-        setIsUser(true);
+      console.log(props.state[0]);
+      if (props.state[0]) {
+        if (props.state[0].isLoggedIn === false) {
+          setIsUser(false);
+        }
+      } else {
+        if (user || props.state.length === 1) {
+          setIsUser(true);
+        }
       }
     }
     getUserInfo();
@@ -64,12 +70,12 @@ const Header = (props): JSX.Element => {
             <Link to="/moreStore">
               <div>
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
+                  width="48"
+                  height="48"
                   viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z" />
+                  <path d="M7 2c1.695 1.942 2.371 3 4 3h13v17h-24v-20h7zm6 11v-3h-2v3h-3v2h3v3h2v-3h3v-2h-3z" />
                 </svg>
               </div>
             </Link>
