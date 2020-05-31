@@ -9,11 +9,24 @@ import { connect } from "react-redux";
 const Container = styled.div`
   width: 100vw;
   height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
-const UserDetail = styled.div``;
+const UserDetail = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10%;
+  width: 60%;
+  height: 100%;
+`;
 
-const ProfileImage = styled.img``;
+const ProfileImage = styled.img`
+  width: 15%;
+  height: 17%;
+`;
 
 const Username = styled.div``;
 
