@@ -22,7 +22,7 @@ const Button = styled.button`
   padding: 10px 30px;
 `;
 
-const Info = (): JSX.Element => {
+const Login = (): JSX.Element => {
   return (
     <Container>
       <Wrapper>
@@ -41,4 +41,4 @@ const Info = (): JSX.Element => {
   );
 };
 
-export default Info;
+export default Login;

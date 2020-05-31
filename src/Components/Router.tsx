@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import Header from "./Header";
 import Home from "../Routes/Home";
-import Info from "../Routes/Info";
+import Login from "../Routes/Login";
 import GCallback from "../Routes/GithubCallback";
 import KCallback from "../Routes/KakaoCallback";
 import Err from "../Routes/Err";
@@ -24,7 +24,7 @@ export default () => (
         <Header />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/info" exact component={Info} />
+          <Route path="/login" exact component={Login} />
           <Route path="/profile" exact component={Profile} />
           <Route path="/moreStore" exact component={MoreStore} />
           <Route path="/error" exact component={Err} />

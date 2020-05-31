@@ -3,6 +3,8 @@ import axios from "axios";
 import styled from "styled-components";
 import Loading from "../Components/Loading";
 import { Redirect } from "react-router-dom";
+import { logoutUser } from "../Components/Store";
+import { connect } from "react-redux";
 
 const Container = styled.div`
   width: 100vw;
@@ -23,7 +25,7 @@ interface IUserInfo {
   avatarUrl: string;
 }
 
-const Profile = (): JSX.Element => {
+const Profile = ({ history, dispatch }): JSX.Element => {
   const [userInfo, setUserInfo] = useState<IUserInfo | undefined>(undefined);
   const [isUser, setIsUser] = useState(true);
 
@@ -36,10 +38,19 @@ const Profile = (): JSX.Element => {
   useEffect(() => {
     async function getUserInfo() {
       const userId = localStorage.getItem("user");
-      const {
-        data: { email, username, avatarUrl },
-      } = await axios.post(`http://localhost:4000/user/me`, { userId });
-      setUserInfo({ email, username, avatarUrl });
+      try {
+        const {
+          data: { email, username, avatarUrl },
+        } = await axios.post(`http://localhost:4000/user/me`, { userId });
+        setUserInfo({ email, username, avatarUrl });
+      } catch (error) {
+        if (error.response.status === 404 || error.response.status === 500) {
+          dispatch(logoutUser());
+          localStorage.removeItem("user");
+          history.push("/");
+        }
+      }
+      // console.log(something);
     }
     getUserInfo();
   }, []);
@@ -65,4 +76,8 @@ const Profile = (): JSX.Element => {
   );
 };
 
-export default Profile;
+const mapDispatchToProp = (dispatch) => {
+  return { dispatch };
+};
+
+export default connect(null, mapDispatchToProp)(Profile);
