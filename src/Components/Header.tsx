@@ -33,15 +33,13 @@ const Header = (props): JSX.Element => {
   useEffect(() => {
     function getUserInfo() {
       const user = localStorage.getItem("user");
-      console.log(props.state[0]);
       if (props.state[0]) {
         if (props.state[0].isLoggedIn === false) {
           setIsUser(false);
         }
-      } else {
-        if (user || props.state.length === 1) {
-          setIsUser(true);
-        }
+      }
+      if (user || (props.state[0] && props.state[0].isLoggedIn === 1)) {
+        setIsUser(true);
       }
     }
     getUserInfo();
