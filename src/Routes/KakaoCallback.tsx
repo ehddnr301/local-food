@@ -21,6 +21,7 @@ const KCallback = ({ history, location, dispatch }) => {
           code,
         });
         dispatch(loginUser(user));
+        localStorage.setItem("user", user.data);
 
         history.push("/"); // 로그인이 완료되면 보여줄 페이지
       } catch (error) {
