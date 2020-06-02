@@ -29,6 +29,9 @@ const Explain = styled.div`
   height: 100%;
   border-right: 1px solid white;
   padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Form = styled.div`
