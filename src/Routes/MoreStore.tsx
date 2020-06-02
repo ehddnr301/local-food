@@ -114,9 +114,9 @@ const MoreStore = (): JSX.Element => {
         <Explain></Explain>
         <Form>
           <form onSubmit={handleSubmit}>
-            <Input placeholder={"storeName"} {...storeName}></Input>
+            <Input placeholder={"가게이름"} {...storeName}></Input>
             <Input
-              placeholder={"storeType 을 선택해주세요."}
+              placeholder={"가게종류를 선택해주세요"}
               onChange={onChange}
               value={type}
               required
@@ -127,8 +127,11 @@ const MoreStore = (): JSX.Element => {
               <option value="restaurant">음식점</option>
               <option value="cafe">카페</option>
             </datalist>
-            <Input placeholder={"location"} {...location}></Input>
-            <Input placeholder={"description"} {...description}></Input>
+            <Input placeholder={"주소"} {...location}></Input>
+            <Input
+              placeholder={"간단한 설명 부탁드려요🙏"}
+              {...description}
+            ></Input>
             <Button type="submit">추가하기</Button>
           </form>
         </Form>
