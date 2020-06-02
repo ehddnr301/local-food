@@ -10,6 +10,7 @@ import Home from "../Routes/Home";
 import Login from "../Routes/Login";
 import GCallback from "../Routes/GithubCallback";
 import KCallback from "../Routes/KakaoCallback";
+import GoogleCallback from "../Routes/GoogleCallback";
 import Err from "../Routes/Err";
 import Profile from "../Routes/Profile";
 import MoreStore from "../Routes/MoreStore";
@@ -30,6 +31,7 @@ export default () => (
           <Route path="/error" exact component={Err} />
           <Route path="/callback/github" exact component={GCallback} />
           <Route path="/callback/kakao" exact component={KCallback} />
+          <Route path="/callback/google" exact component={GoogleCallback} />
           <Redirect from="*" to="/" />
         </Switch>
       </Provider>

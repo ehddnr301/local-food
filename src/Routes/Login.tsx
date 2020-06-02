@@ -29,7 +29,7 @@ const Title = styled.div`
 `;
 
 const ButtonWrapper = styled.div`
-  margin-top: 10%;
+  margin-top: 5%;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -37,7 +37,7 @@ const ButtonWrapper = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
-    &:first-child {
+    &:not(:last-child) {
       margin-bottom: 10px;
     }
   }
@@ -76,6 +76,7 @@ const Kakao = styled.div`
 const Login = (): JSX.Element => {
   return (
     <Container>
+      <script src="https://apis.google.com/js/platform.js" async defer></script>
       <Wrapper>
         <Title>함께하기</Title>
         <ButtonWrapper>
@@ -88,6 +89,11 @@ const Login = (): JSX.Element => {
             href={`https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_GH_ID}&redirect_uri=${process.env.REACT_APP_GH_CALLBACK}&scope=read:user`}
           >
             <Button>깃허브</Button>
+          </a>
+          <a
+            href={`https://accounts.google.com/o/oauth2/auth?client_id=${process.env.REACT_APP_GOOGLE_ID}&redirect_uri=${process.env.REACT_APP_GOOGLE_CALLBACK}&scope=${process.env.REACT_APP_GOOGLE_SCOPE}&response_type=code`}
+          >
+            <Button>구글</Button>
           </a>
         </ButtonWrapper>
         <Icon>
