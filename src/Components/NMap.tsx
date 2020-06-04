@@ -10,6 +10,8 @@ const NaverMapTag = styled(NaverMap)`
 
 const NMap = () => {
   const [store, setStore] = useState(null);
+  const [currentGeo, setCurrentGeo] = useState({ lat: 0, lng: 0 });
+  let initialGeo = { lat: 0, lng: 0 };
 
   const didMount = async () => {
     const { data } = await axios.get("http://localhost:4000/store/list/all");
@@ -18,9 +20,27 @@ const NMap = () => {
     console.log(storeInfo);
     setStore(storeInfo);
   };
+
+  // * 현재위치
+  const successGeo = (pos) => {
+    const {
+      coords: { latitude, longitude },
+    } = pos;
+    if (latitude && longitude) {
+      setCurrentGeo({ lat: latitude, lng: longitude });
+    }
+  };
+  const errorGeo = (error) => {};
+  const currentLocation = () => {
+    navigator.geolocation.getCurrentPosition(successGeo, errorGeo);
+  };
   useEffect(() => {
+    if (currentGeo.lat === 0) {
+      currentLocation();
+    }
     didMount();
-  }, []);
+    console.log(currentGeo);
+  }, [currentGeo]);
   return (
     <>
       <RenderAfterNavermapsLoaded
@@ -28,13 +48,13 @@ const NMap = () => {
       >
         <NaverMapTag
           id="maps-examples-marker"
-          defaultCenter={{ lat: 37.3595704, lng: 127.105399 }}
-          defaultZoom={10}
+          defaultCenter={{ lat: currentGeo.lat, lng: currentGeo.lng }}
+          defaultZoom={20}
         >
           <Marker
-            position={{ lat: 37.3595704, lng: 127.105399 }}
+            position={{ lat: currentGeo.lat, lng: currentGeo.lng }}
             onClick={() => {
-              alert("여기는 네이버 입니다.");
+              alert("현위치입니다.");
             }}
           />
           {store &&
