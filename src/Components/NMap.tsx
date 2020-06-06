@@ -26,20 +26,19 @@ const NMap = () => {
     const {
       coords: { latitude, longitude },
     } = pos;
-    if (latitude && longitude) {
-      setCurrentGeo({ lat: latitude, lng: longitude });
-    }
+    setCurrentGeo({ lat: latitude, lng: longitude });
   };
-  const errorGeo = (error) => {};
-  const currentLocation = () => {
-    navigator.geolocation.getCurrentPosition(successGeo, errorGeo);
+  const errorGeo = (error) => {
+    setCurrentGeo({ lat: 37.5665, lng: 126.978 });
+  };
+  const currentLocation = async () => {
+    await navigator.geolocation.getCurrentPosition(successGeo, errorGeo);
   };
   useEffect(() => {
     if (currentGeo.lat === 0) {
       currentLocation();
     }
     didMount();
-    console.log(currentGeo);
   }, [currentGeo]);
   return (
     <>
