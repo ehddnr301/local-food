@@ -10,7 +10,7 @@ const NaverMapTag = styled(NaverMap)`
 
 const NMap = () => {
   const [store, setStore] = useState(null);
-  const [currentGeo, setCurrentGeo] = useState({ lat: 0, lng: 0 });
+  const [currentGeo, setCurrentGeo] = useState({ lat: 37.5665, lng: 126.978 });
   let initialGeo = { lat: 0, lng: 0 };
 
   const didMount = async () => {
@@ -31,14 +31,16 @@ const NMap = () => {
   const errorGeo = (error) => {
     setCurrentGeo({ lat: 37.5665, lng: 126.978 });
   };
-  const currentLocation = async () => {
-    await navigator.geolocation.getCurrentPosition(successGeo, errorGeo);
+  const currentLocation = () => {
+    navigator.geolocation.getCurrentPosition(successGeo, errorGeo);
   };
   useEffect(() => {
-    if (currentGeo.lat === 0) {
+    if (currentGeo.lat === 37.5665 && currentGeo.lng === 126.978) {
       currentLocation();
+      didMount();
+    } else {
+      didMount();
     }
-    didMount();
   }, [currentGeo]);
   return (
     <>
