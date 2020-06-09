@@ -26,13 +26,17 @@ const NMap = () => {
     const {
       coords: { latitude, longitude },
     } = pos;
+    localStorage.setItem("currentLat", latitude);
+    localStorage.setItem("currentLng", longitude);
     setCurrentGeo({ lat: latitude, lng: longitude });
   };
   const errorGeo = (error) => {
     setCurrentGeo({ lat: 37.5665, lng: 126.978 });
   };
   const currentLocation = () => {
-    navigator.geolocation.getCurrentPosition(successGeo, errorGeo);
+    navigator.geolocation.getCurrentPosition(successGeo, errorGeo, {
+      timeout: 10000,
+    });
   };
   useEffect(() => {
     if (currentGeo.lat === 37.5665 && currentGeo.lng === 126.978) {
@@ -50,7 +54,7 @@ const NMap = () => {
         <NaverMapTag
           id="maps-examples-marker"
           defaultCenter={{ lat: currentGeo.lat, lng: currentGeo.lng }}
-          defaultZoom={20}
+          defaultZoom={18}
         >
           <Marker
             position={{ lat: currentGeo.lat, lng: currentGeo.lng }}

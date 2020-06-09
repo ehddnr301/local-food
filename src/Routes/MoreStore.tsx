@@ -4,7 +4,13 @@ import axios from "axios";
 import useInput from "../Components/useInput";
 import Input from "../Components/Input";
 import { useHistory, Redirect } from "react-router-dom";
+import { RenderAfterNavermapsLoaded, NaverMap, Marker } from "react-naver-maps";
 import backgroundMore from "../Images/backgroundMore.jpg";
+
+const NaverMapTag = styled(NaverMap)`
+  width: 100%;
+  height: 100%;
+`;
 
 const Container = styled.div`
   width: 100vw;
@@ -64,6 +70,10 @@ const Button = styled.button`
 const MoreStore = (): JSX.Element => {
   const history = useHistory();
   const [isSuccess, setIsSuccess] = useState(false);
+  const [currentLocation, setCurrentLocation] = useState({
+    lat: 37.5665,
+    lng: 126.978,
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -106,12 +116,43 @@ const MoreStore = (): JSX.Element => {
     }
   };
 
+  useEffect(() => {
+    const lat = parseFloat(localStorage.getItem("currentLat"));
+    const lng = parseFloat(localStorage.getItem("currentLng"));
+    if (currentLocation.lat === 37.5665) {
+      console.log("hi");
+      setCurrentLocation({ lat, lng });
+    }
+    console.log(lat, lng);
+  }, [currentLocation]);
+
   return isSuccess ? (
     <Redirect to="/" />
   ) : (
     <Container>
       <FormWrapper>
-        <Explain></Explain>
+        <Explain>
+          <RenderAfterNavermapsLoaded
+            ncpClientId={process.env.REACT_APP_NAVER_CLIENT}
+          >
+            <NaverMapTag
+              defaultCenter={{
+                lat: currentLocation.lat,
+                lng: currentLocation.lng,
+                // lat: 37.5665,
+                // lng: 126.978,
+              }}
+              defaultZoom={17}
+            >
+              <Marker
+                position={{
+                  lat: currentLocation.lat,
+                  lng: currentLocation.lng,
+                }}
+              />
+            </NaverMapTag>
+          </RenderAfterNavermapsLoaded>
+        </Explain>
         <Form>
           <form onSubmit={handleSubmit}>
             <Input placeholder={"가게이름"} {...storeName}></Input>
