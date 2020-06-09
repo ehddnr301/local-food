@@ -9,7 +9,7 @@ import backgroundMore from "../Images/backgroundMore.jpg";
 
 const NaverMapTag = styled(NaverMap)`
   width: 100%;
-  height: 100%;
+  height: 90%;
 `;
 
 const Container = styled.div`
@@ -38,6 +38,13 @@ const Explain = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+`;
+
+const Address = styled.div`
+  margin-top: 20px;
+  font-size: 18px;
+  color: white;
 `;
 
 const Form = styled.div`
@@ -74,6 +81,12 @@ const MoreStore = (): JSX.Element => {
     lat: 37.5665,
     lng: 126.978,
   });
+  const [currentAddress, setCurrentAddress] = useState("");
+  const storeName = useInput("");
+  const storeType = useInput("");
+  const [type, setType] = useState("");
+  const location = useInput("");
+  const description = useInput("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -98,12 +111,6 @@ const MoreStore = (): JSX.Element => {
     }
   };
 
-  const storeName = useInput("");
-  const storeType = useInput("");
-  const [type, setType] = useState("");
-  const location = useInput("");
-  const description = useInput("");
-
   const onChange = (e) => {
     const {
       target: { value },
@@ -116,9 +123,24 @@ const MoreStore = (): JSX.Element => {
     }
   };
 
+  const getAddress = async (lat: number, lng: number) => {
+    const { data } = await axios.post(
+      "http://localhost:4000/store/reverseGeo",
+      {
+        lat,
+        lng,
+      }
+    );
+    setCurrentAddress(data);
+  };
+
   useEffect(() => {
     const lat = parseFloat(localStorage.getItem("currentLat"));
     const lng = parseFloat(localStorage.getItem("currentLng"));
+    if (currentAddress === "") {
+      getAddress(lat, lng);
+    }
+
     if (currentLocation.lat === 37.5665) {
       console.log("hi");
       setCurrentLocation({ lat, lng });
@@ -139,8 +161,6 @@ const MoreStore = (): JSX.Element => {
               defaultCenter={{
                 lat: currentLocation.lat,
                 lng: currentLocation.lng,
-                // lat: 37.5665,
-                // lng: 126.978,
               }}
               defaultZoom={17}
             >
@@ -152,6 +172,7 @@ const MoreStore = (): JSX.Element => {
               />
             </NaverMapTag>
           </RenderAfterNavermapsLoaded>
+          <Address>{`현재위치 : ${currentAddress}`}</Address>
         </Explain>
         <Form>
           <form onSubmit={handleSubmit}>
