@@ -47,6 +47,16 @@ const Address = styled.div`
   color: white;
 `;
 
+const Move = styled.div`
+  margin-top: 10px;
+  cursor: pointer;
+  color: white;
+  font-size: 18px;
+  background-color: #2ecc71;
+  padding: 1.5% 5% 1%;
+  border-radius: 10px;
+`;
+
 const Form = styled.div`
   width: 100%;
   height: 100%;
@@ -63,6 +73,7 @@ const Form = styled.div`
 `;
 
 const Button = styled.button`
+  cursor: pointer;
   width: 60%;
   padding: 2% 5% 1%;
   border: 0;
@@ -133,6 +144,9 @@ const MoreStore = (): JSX.Element => {
     );
     setCurrentAddress(data);
   };
+  const moveAddress = () => {
+    location.setValue(currentAddress);
+  };
 
   useEffect(() => {
     const lat = parseFloat(localStorage.getItem("currentLat"));
@@ -173,6 +187,7 @@ const MoreStore = (): JSX.Element => {
             </NaverMapTag>
           </RenderAfterNavermapsLoaded>
           <Address>{`현재위치 : ${currentAddress}`}</Address>
+          <Move onClick={moveAddress}>주소사용하기</Move>
         </Explain>
         <Form>
           <form onSubmit={handleSubmit}>
