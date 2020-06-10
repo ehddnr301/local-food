@@ -55,8 +55,29 @@ const NMap = () => {
       timeout: 10000,
     });
   };
-  const toggleLike = (store) => {
-    console.log(store);
+  const toggleLike = async (store) => {
+    const userId = localStorage.getItem("user");
+    try {
+      const { status, data } = await axios.post(
+        "http://localhost:4000/store/toggleLike",
+        {
+          store,
+          userId,
+        }
+      );
+      console.log(status, data);
+      if (status === 200) {
+        if (data === "IN") {
+          alert("목록에 추가하였습니다.");
+        } else {
+          alert("목록에서 제거하였습니다.");
+        }
+      } else {
+        console.log("error");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -95,7 +116,7 @@ const NMap = () => {
                 position={{ lat: s.yCoordinate, lng: s.xCoordinate }}
                 key={s._id}
                 onClick={() => {
-                  alert(`여기는 ${s.storeName} 입니다.`);
+                  toggleLike(s);
                 }}
               />
             ))}
