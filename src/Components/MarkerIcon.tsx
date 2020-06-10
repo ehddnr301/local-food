@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
+import user from "../Images/user.png";
 
 const Pulsate = keyframes`
   0% {
@@ -33,42 +34,21 @@ const Bounce = keyframes`
 `;
 
 const StyledMarker = styled.div`
-  /* width: 16px;
-  height: 16px;
-  border-radius: 50% 50% 50% 0;
-  background: linear-gradient(90deg, #175c8e 0%, #f7941e 100%);
-  position: absolute;
-  transform: rotate(-45deg);
-  left: 50%;
-  top: 50%;
-  margin: -15px 0 0 -17px;
-  animation-name: ${Bounce};
-  animation-fill-mode: both;
-  animation-duration: 1s;
-  border: 4px solid transparent;
-  -webkit-animation-iteration-count: 1;
-  animation-iteration-count: 1;
-  &::after {
-    content: "";
-    width: 11px;
-    height: 11px;
-    margin: 3px 0 0 2px;
-    background: #fff;
-    position: absolute;
-    border-radius: 50%;
-    left: 0;
-  } */
-  font-size:24px;
-  text-align:center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  text-align: center;
+  background-image: url(${user});
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 const Pulse = styled.div`
-  background: rgba(0, 0, 0, 0.2);
   border-radius: 50%;
   height: 14px;
   width: 14px;
   position: absolute;
-  left: 80%;
+  left: 65%;
   top: 50%;
   margin: 11px 0px 0px -12px;
   transform: rotateX(55deg);
@@ -103,7 +83,7 @@ const MarkerWrapper = styled.div`
 export default function MarkerIcon() {
   return (
     <MarkerWrapper>
-      <StyledMarker>H</StyledMarker>
+      <StyledMarker></StyledMarker>
       <Pulse></Pulse>
     </MarkerWrapper>
   );
