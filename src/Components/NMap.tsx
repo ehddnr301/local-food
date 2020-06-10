@@ -1,16 +1,33 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { RenderAfterNavermapsLoaded, NaverMap, Marker } from "react-naver-maps";
+import ReactDOMServer from "react-dom/server";
 import axios from "axios";
+import MarkerIcon from "./MarkerIcon";
 
 const NaverMapTag = styled(NaverMap)`
   width: 100%;
   height: 100%;
 `;
+const icon = {
+  content: [
+    '<div class="cs_mapbridge">',
+    '<div class="map_group _map_group crs">',
+    '<div class="map_marker _marker num1 num1_big"> ',
+    '<span class="ico _icon"></span>',
+    '<span class="shd"></span>',
+    "</div>",
+    "</div>",
+    "</div>",
+  ].join(""),
+};
 
 const NMap = () => {
   const [store, setStore] = useState(null);
-  const [currentGeo, setCurrentGeo] = useState({ lat: 37.5665, lng: 126.978 });
+  const [currentGeo, setCurrentGeo] = useState({
+    lat: localStorage.getItem("currentLat") || 37.5665,
+    lng: localStorage.getItem("currentLng") || 126.978,
+  });
   let initialGeo = { lat: 0, lng: 0 };
 
   const didMount = async () => {
@@ -38,6 +55,10 @@ const NMap = () => {
       timeout: 10000,
     });
   };
+  const toggleLike = (store) => {
+    console.log(store);
+  };
+
   useEffect(() => {
     if (currentGeo.lat === 37.5665 && currentGeo.lng === 126.978) {
       currentLocation();
@@ -46,6 +67,7 @@ const NMap = () => {
       didMount();
     }
   }, [currentGeo]);
+
   return (
     <>
       <RenderAfterNavermapsLoaded
@@ -61,7 +83,12 @@ const NMap = () => {
             onClick={() => {
               alert("현위치입니다.");
             }}
+            icon={{
+              content: ReactDOMServer.renderToString(<MarkerIcon />),
+            }}
+            animation={2}
           />
+
           {store &&
             store.map((s) => (
               <Marker

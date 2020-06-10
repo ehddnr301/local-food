@@ -89,8 +89,8 @@ const MoreStore = (): JSX.Element => {
   const history = useHistory();
   const [isSuccess, setIsSuccess] = useState(false);
   const [currentLocation, setCurrentLocation] = useState({
-    lat: 37.5665,
-    lng: 126.978,
+    lat: localStorage.getItem("currentLat") || 37.5665,
+    lng: localStorage.getItem("currentLng") || 126.978,
   });
   const [currentAddress, setCurrentAddress] = useState("");
   const storeName = useInput("");
@@ -191,7 +191,7 @@ const MoreStore = (): JSX.Element => {
         </Explain>
         <Form>
           <form onSubmit={handleSubmit}>
-            <Input placeholder={"가게이름"} {...storeName}></Input>
+            <Input placeholder={"가게이름🚀"} {...storeName}></Input>
             <Input
               placeholder={"가게종류를 선택해주세요"}
               onChange={onChange}
