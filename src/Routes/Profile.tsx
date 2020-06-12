@@ -67,6 +67,12 @@ const Logout = styled.button`
   }
 `;
 
+const StoreWrapper = styled.div``;
+const StoreName = styled.div``;
+const StoreType = styled.div``;
+const StoreLocation = styled.div``;
+const StoreDescription = styled.div``;
+
 interface IUserInfo {
   email: string;
   username: string;
@@ -75,6 +81,7 @@ interface IUserInfo {
 
 const Profile = ({ history, dispatch }): JSX.Element => {
   const [userInfo, setUserInfo] = useState<IUserInfo | undefined>(undefined);
+  const [userStore, setUserStore] = useState(null);
   const [isUser, setIsUser] = useState(true);
 
   const onClick = () => {
@@ -84,24 +91,40 @@ const Profile = ({ history, dispatch }): JSX.Element => {
     setIsUser(false);
   };
 
-  useEffect(() => {
-    async function getUserInfo() {
-      const userId = localStorage.getItem("user");
-      try {
-        const {
-          data: { email, username, avatarUrl },
-        } = await axios.post(`http://localhost:4000/user/me`, { userId });
-        setUserInfo({ email, username, avatarUrl });
-      } catch (error) {
-        if (error.response.status === 404 || error.response.status === 500) {
-          dispatch(logoutUser());
-          localStorage.removeItem("user");
-          history.push("/");
-        }
+  const getUserInfo = async () => {
+    const userId = localStorage.getItem("user");
+    try {
+      const {
+        data: { email, username, avatarUrl },
+      } = await axios.post(`http://localhost:4000/user/me`, { userId });
+      setUserInfo({ email, username, avatarUrl });
+    } catch (error) {
+      if (error.response.status === 404 || error.response.status === 500) {
+        dispatch(logoutUser());
+        localStorage.removeItem("user");
+        history.push("/");
       }
-      // console.log(something);
     }
+  };
+  const getUserStore = async () => {
+    const userId = localStorage.getItem("user");
+    try {
+      const { data } = await axios.post(
+        `http://localhost:4000/store/list/like`,
+        {
+          userId,
+        }
+      );
+      console.log(data);
+      setUserStore(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
     getUserInfo();
+    getUserStore();
   }, []);
   return (
     <Container>
@@ -115,7 +138,17 @@ const Profile = ({ history, dispatch }): JSX.Element => {
                 <Email>{userInfo.email}</Email>
                 <Logout onClick={onClick}>logout</Logout>
               </UserInfo>
-              <UserStore></UserStore>
+              <UserStore>
+                {userStore &&
+                  userStore.map((s) => (
+                    <StoreWrapper>
+                      <StoreName>{s.name}</StoreName>
+                      <StoreType>{s.type}</StoreType>
+                      <StoreLocation>{s.location}</StoreLocation>
+                      <StoreDescription>{s.description}</StoreDescription>
+                    </StoreWrapper>
+                  ))}
+              </UserStore>
             </UserDetail>
           )
         ) : (

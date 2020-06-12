@@ -4,23 +4,11 @@ import { RenderAfterNavermapsLoaded, NaverMap, Marker } from "react-naver-maps";
 import ReactDOMServer from "react-dom/server";
 import axios from "axios";
 import MarkerIcon from "./MarkerIcon";
-
+// TODO : react-naver-maps 가 InfoView를 지원하지않아서 modal창으로 해야할듯함
 const NaverMapTag = styled(NaverMap)`
   width: 100%;
   height: 100%;
 `;
-const icon = {
-  content: [
-    '<div class="cs_mapbridge">',
-    '<div class="map_group _map_group crs">',
-    '<div class="map_marker _marker num1 num1_big"> ',
-    '<span class="ico _icon"></span>',
-    '<span class="shd"></span>',
-    "</div>",
-    "</div>",
-    "</div>",
-  ].join(""),
-};
 
 const NMap = () => {
   const [store, setStore] = useState(null);
@@ -28,7 +16,6 @@ const NMap = () => {
     lat: localStorage.getItem("currentLat") || 37.5665,
     lng: localStorage.getItem("currentLng") || 126.978,
   });
-  let initialGeo = { lat: 0, lng: 0 };
 
   const didMount = async () => {
     const { data } = await axios.get("http://localhost:4000/store/list/all");

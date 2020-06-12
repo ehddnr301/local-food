@@ -85,6 +85,7 @@ const Button = styled.button`
   font-size: 20px;
 `;
 
+// TODO : input validation ?
 const MoreStore = (): JSX.Element => {
   const history = useHistory();
   const [isSuccess, setIsSuccess] = useState(false);

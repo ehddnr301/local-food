@@ -48,7 +48,7 @@ const Header = (props): JSX.Element => {
   return (
     <Container>
       <Title>
-        <Link to="/">로컬푸드</Link>
+        <Link to="/">맛집지도</Link>
       </Title>
       <Nav>
         {isUser ? (
