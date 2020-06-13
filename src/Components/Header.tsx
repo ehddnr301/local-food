@@ -27,6 +27,7 @@ const Title = styled.div`
   font-size: 48px;
 `;
 
+// TODO : header에다가 필터링 리스트 넣어서 필터링하기
 const Header = (props): JSX.Element => {
   const [isUser, setIsUser] = useState(false);
 
