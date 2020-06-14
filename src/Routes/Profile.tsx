@@ -67,11 +67,26 @@ const Logout = styled.button`
   }
 `;
 
-const StoreWrapper = styled.div``;
-const StoreName = styled.div``;
-const StoreType = styled.div``;
-const StoreLocation = styled.div``;
-const StoreDescription = styled.div``;
+const StoreWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  padding: 10px;
+`;
+const StoreName = styled.div`
+  width: 80%;
+`;
+const StoreType = styled.div`
+  width: 80%;
+`;
+const StoreLocation = styled.div`
+  width: 80%;
+`;
+const StoreDescription = styled.div`
+  width: 80%;
+`;
 
 interface IUserInfo {
   email: string;
@@ -142,10 +157,12 @@ const Profile = ({ history, dispatch }): JSX.Element => {
                 {userStore &&
                   userStore.map((s) => (
                     <StoreWrapper>
-                      <StoreName>{s.name}</StoreName>
-                      <StoreType>{s.type}</StoreType>
-                      <StoreLocation>{s.location}</StoreLocation>
-                      <StoreDescription>{s.description}</StoreDescription>
+                      <StoreName>가게이름 : {s.name}</StoreName>
+                      <StoreType>종류 : {s.type}</StoreType>
+                      <StoreLocation>위치 : {s.location}</StoreLocation>
+                      <StoreDescription>
+                        설명 : {s.description}
+                      </StoreDescription>
                     </StoreWrapper>
                   ))}
               </UserStore>
