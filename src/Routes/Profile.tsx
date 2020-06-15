@@ -36,6 +36,7 @@ const UserStore = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(200, 30, 30, 0.4);
+  overflow-y: scroll;
 `;
 
 const ProfileImage = styled.img`
@@ -165,6 +166,90 @@ const Profile = ({ history, dispatch }): JSX.Element => {
                       </StoreDescription>
                     </StoreWrapper>
                   ))}
+                <StoreWrapper>
+                  <StoreName>가게이름 : </StoreName>
+                  <StoreType>종류 : </StoreType>
+                  <StoreLocation>위치 : </StoreLocation>
+                  <StoreDescription>설명 : </StoreDescription>
+                </StoreWrapper>
+                <StoreWrapper>
+                  <StoreName>가게이름 : </StoreName>
+                  <StoreType>종류 : </StoreType>
+                  <StoreLocation>위치 : </StoreLocation>
+                  <StoreDescription>설명 : </StoreDescription>
+                </StoreWrapper>
+                <StoreWrapper>
+                  <StoreName>가게이름 : </StoreName>
+                  <StoreType>종류 : </StoreType>
+                  <StoreLocation>위치 : </StoreLocation>
+                  <StoreDescription>설명 : </StoreDescription>
+                </StoreWrapper>
+                <StoreWrapper>
+                  <StoreName>가게이름 : </StoreName>
+                  <StoreType>종류 : </StoreType>
+                  <StoreLocation>위치 : </StoreLocation>
+                  <StoreDescription>설명 : </StoreDescription>
+                </StoreWrapper>
+                <StoreWrapper>
+                  <StoreName>가게이름 : </StoreName>
+                  <StoreType>종류 : </StoreType>
+                  <StoreLocation>위치 : </StoreLocation>
+                  <StoreDescription>설명 : </StoreDescription>
+                </StoreWrapper>
+                <StoreWrapper>
+                  <StoreName>가게이름 : </StoreName>
+                  <StoreType>종류 : </StoreType>
+                  <StoreLocation>위치 : </StoreLocation>
+                  <StoreDescription>설명 : </StoreDescription>
+                </StoreWrapper>
+                <StoreWrapper>
+                  <StoreName>가게이름 : </StoreName>
+                  <StoreType>종류 : </StoreType>
+                  <StoreLocation>위치 : </StoreLocation>
+                  <StoreDescription>설명 : </StoreDescription>
+                </StoreWrapper>
+                <StoreWrapper>
+                  <StoreName>가게이름 : </StoreName>
+                  <StoreType>종류 : </StoreType>
+                  <StoreLocation>위치 : </StoreLocation>
+                  <StoreDescription>설명 : </StoreDescription>
+                </StoreWrapper>
+                <StoreWrapper>
+                  <StoreName>가게이름 : </StoreName>
+                  <StoreType>종류 : </StoreType>
+                  <StoreLocation>위치 : </StoreLocation>
+                  <StoreDescription>설명 : </StoreDescription>
+                </StoreWrapper>
+                <StoreWrapper>
+                  <StoreName>가게이름 : </StoreName>
+                  <StoreType>종류 : </StoreType>
+                  <StoreLocation>위치 : </StoreLocation>
+                  <StoreDescription>설명 : </StoreDescription>
+                </StoreWrapper>
+                <StoreWrapper>
+                  <StoreName>가게이름 : </StoreName>
+                  <StoreType>종류 : </StoreType>
+                  <StoreLocation>위치 : </StoreLocation>
+                  <StoreDescription>설명 : </StoreDescription>
+                </StoreWrapper>
+                <StoreWrapper>
+                  <StoreName>가게이름 : </StoreName>
+                  <StoreType>종류 : </StoreType>
+                  <StoreLocation>위치 : </StoreLocation>
+                  <StoreDescription>설명 : </StoreDescription>
+                </StoreWrapper>
+                <StoreWrapper>
+                  <StoreName>가게이름 : </StoreName>
+                  <StoreType>종류 : </StoreType>
+                  <StoreLocation>위치 : </StoreLocation>
+                  <StoreDescription>설명 : </StoreDescription>
+                </StoreWrapper>
+                <StoreWrapper>
+                  <StoreName>가게이름 : </StoreName>
+                  <StoreType>종류 : </StoreType>
+                  <StoreLocation>위치 : </StoreLocation>
+                  <StoreDescription>설명 : </StoreDescription>
+                </StoreWrapper>
               </UserStore>
             </UserDetail>
           )
