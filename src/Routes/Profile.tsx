@@ -19,13 +19,13 @@ const UserDetail = styled.div`
   align-items: center;
   width: 60%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
 `;
 
 const UserInfo = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-top: 10%;
   align-items: center;
   width: 100%;
   height: 100%;
@@ -34,14 +34,17 @@ const UserInfo = styled.div`
 
 const UserStore = styled.div`
   width: 100%;
-  height: 100%;
-  background-color: rgba(200, 30, 30, 0.4);
+  height: 90%;
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 `;
 
 const ProfileImage = styled.img`
-  width: 27%;
-  height: 17%;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
 `;
 
@@ -68,13 +71,23 @@ const Logout = styled.button`
   }
 `;
 
+const Title = styled.div`
+  padding: 10px 0;
+  font-size: 38px;
+  text-align: center;
+`;
 const StoreWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.3);
-  width: 100%;
+  width: 90%;
   padding: 10px;
+  border: 1px solid black;
+  border-radius: 15px;
+  box-shadow: 0px 0px 22px -7px rgba(0, 0, 0, 0.75);
+  &:not(:first-child) {
+    margin-top: 20px;
+  }
 `;
 const StoreName = styled.div`
   width: 80%;
@@ -155,6 +168,8 @@ const Profile = ({ history, dispatch }): JSX.Element => {
                 <Logout onClick={onClick}>logout</Logout>
               </UserInfo>
               <UserStore>
+                <Title>리스트</Title>
+
                 {userStore &&
                   userStore.map((s) => (
                     <StoreWrapper>
@@ -166,90 +181,6 @@ const Profile = ({ history, dispatch }): JSX.Element => {
                       </StoreDescription>
                     </StoreWrapper>
                   ))}
-                <StoreWrapper>
-                  <StoreName>가게이름 : </StoreName>
-                  <StoreType>종류 : </StoreType>
-                  <StoreLocation>위치 : </StoreLocation>
-                  <StoreDescription>설명 : </StoreDescription>
-                </StoreWrapper>
-                <StoreWrapper>
-                  <StoreName>가게이름 : </StoreName>
-                  <StoreType>종류 : </StoreType>
-                  <StoreLocation>위치 : </StoreLocation>
-                  <StoreDescription>설명 : </StoreDescription>
-                </StoreWrapper>
-                <StoreWrapper>
-                  <StoreName>가게이름 : </StoreName>
-                  <StoreType>종류 : </StoreType>
-                  <StoreLocation>위치 : </StoreLocation>
-                  <StoreDescription>설명 : </StoreDescription>
-                </StoreWrapper>
-                <StoreWrapper>
-                  <StoreName>가게이름 : </StoreName>
-                  <StoreType>종류 : </StoreType>
-                  <StoreLocation>위치 : </StoreLocation>
-                  <StoreDescription>설명 : </StoreDescription>
-                </StoreWrapper>
-                <StoreWrapper>
-                  <StoreName>가게이름 : </StoreName>
-                  <StoreType>종류 : </StoreType>
-                  <StoreLocation>위치 : </StoreLocation>
-                  <StoreDescription>설명 : </StoreDescription>
-                </StoreWrapper>
-                <StoreWrapper>
-                  <StoreName>가게이름 : </StoreName>
-                  <StoreType>종류 : </StoreType>
-                  <StoreLocation>위치 : </StoreLocation>
-                  <StoreDescription>설명 : </StoreDescription>
-                </StoreWrapper>
-                <StoreWrapper>
-                  <StoreName>가게이름 : </StoreName>
-                  <StoreType>종류 : </StoreType>
-                  <StoreLocation>위치 : </StoreLocation>
-                  <StoreDescription>설명 : </StoreDescription>
-                </StoreWrapper>
-                <StoreWrapper>
-                  <StoreName>가게이름 : </StoreName>
-                  <StoreType>종류 : </StoreType>
-                  <StoreLocation>위치 : </StoreLocation>
-                  <StoreDescription>설명 : </StoreDescription>
-                </StoreWrapper>
-                <StoreWrapper>
-                  <StoreName>가게이름 : </StoreName>
-                  <StoreType>종류 : </StoreType>
-                  <StoreLocation>위치 : </StoreLocation>
-                  <StoreDescription>설명 : </StoreDescription>
-                </StoreWrapper>
-                <StoreWrapper>
-                  <StoreName>가게이름 : </StoreName>
-                  <StoreType>종류 : </StoreType>
-                  <StoreLocation>위치 : </StoreLocation>
-                  <StoreDescription>설명 : </StoreDescription>
-                </StoreWrapper>
-                <StoreWrapper>
-                  <StoreName>가게이름 : </StoreName>
-                  <StoreType>종류 : </StoreType>
-                  <StoreLocation>위치 : </StoreLocation>
-                  <StoreDescription>설명 : </StoreDescription>
-                </StoreWrapper>
-                <StoreWrapper>
-                  <StoreName>가게이름 : </StoreName>
-                  <StoreType>종류 : </StoreType>
-                  <StoreLocation>위치 : </StoreLocation>
-                  <StoreDescription>설명 : </StoreDescription>
-                </StoreWrapper>
-                <StoreWrapper>
-                  <StoreName>가게이름 : </StoreName>
-                  <StoreType>종류 : </StoreType>
-                  <StoreLocation>위치 : </StoreLocation>
-                  <StoreDescription>설명 : </StoreDescription>
-                </StoreWrapper>
-                <StoreWrapper>
-                  <StoreName>가게이름 : </StoreName>
-                  <StoreType>종류 : </StoreType>
-                  <StoreLocation>위치 : </StoreLocation>
-                  <StoreDescription>설명 : </StoreDescription>
-                </StoreWrapper>
               </UserStore>
             </UserDetail>
           )

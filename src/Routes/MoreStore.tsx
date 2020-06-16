@@ -6,6 +6,7 @@ import Input from "../Components/Input";
 import { useHistory, Redirect } from "react-router-dom";
 import { RenderAfterNavermapsLoaded, NaverMap, Marker } from "react-naver-maps";
 import backgroundMore from "../Images/backgroundMore.jpg";
+import useTypeInput from "../Components/useTypeInput";
 
 const NaverMapTag = styled(NaverMap)`
   width: 100%;
@@ -95,8 +96,7 @@ const MoreStore = (): JSX.Element => {
   });
   const [currentAddress, setCurrentAddress] = useState("");
   const storeName = useInput("");
-  const storeType = useInput("");
-  const [type, setType] = useState("");
+  const storeType = useTypeInput("");
   const location = useInput("");
   const description = useInput("");
 
@@ -109,29 +109,22 @@ const MoreStore = (): JSX.Element => {
     try {
       setIsSuccess(true);
 
-      await axios.post("http://localhost:4000/store/list", {
+      const { data } = await axios.post("http://localhost:4000/store/list", {
         storeName: storeName.value,
         storeType: storeType.value,
         location: location.value,
         description: description.value,
         id: userId,
       });
+      if (data === "Success") {
+        alert("추가에 성공하였습니다.");
+      } else {
+        alert("추가에 실패하였습니다.");
+      }
     } catch (error) {
       console.log(error);
     } finally {
       console.log(isSuccess);
-    }
-  };
-
-  const onChange = (e) => {
-    const {
-      target: { value },
-    } = e;
-    console.log(value);
-    if (value !== "pub" && value !== "restaurant" && value !== "cafe") {
-      setType("");
-    } else {
-      setType(value);
     }
   };
 
@@ -195,10 +188,9 @@ const MoreStore = (): JSX.Element => {
             <Input placeholder={"가게이름🚀"} {...storeName}></Input>
             <Input
               placeholder={"가게종류를 선택해주세요"}
-              onChange={onChange}
-              value={type}
               required
               list="type"
+              {...storeType}
             ></Input>
             <datalist id="type">
               <option value="pub">주점</option>
