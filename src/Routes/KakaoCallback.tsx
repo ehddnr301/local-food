@@ -20,6 +20,10 @@ const KCallback = ({ history, location, dispatch }) => {
         const user = await axios.post(`http://localhost:4000/user/auth/kakao`, {
           code,
         });
+        if (user.data === "loginFail") {
+          alert("loginFail");
+          history("/login");
+        }
         dispatch(loginUser(user));
         localStorage.setItem("user", user.data);
 

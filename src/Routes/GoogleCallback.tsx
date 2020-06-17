@@ -24,6 +24,10 @@ const GoogleCallback = ({ history, location, dispatch }) => {
             code,
           }
         );
+        if (user.data === "loginFail") {
+          alert("loginFail");
+          history("/login");
+        }
         console.log(user.data);
         dispatch(loginUser(user));
 
